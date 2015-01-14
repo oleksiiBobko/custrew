@@ -1,8 +1,5 @@
 package com.bobko.messages;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
 import org.apache.felix.scr.annotations.Property;
@@ -28,11 +25,9 @@ import com.bobko.service.TestService;
 @Service
 @Properties({ @Property(name = EventConstants.EVENT_TOPIC, value = "org/osgi/framework/BundleEvent/*") })
 public class BundleEventHandler implements EventHandler {
-
-    private List<String> bundlesEvents = new ArrayList<String>();
     
     @Reference
-    private TestService eventLog;
+    private TestService testService;
     
     @Override
     public void handleEvent(Event event) {
@@ -46,7 +41,7 @@ public class BundleEventHandler implements EventHandler {
         stringBuilder.append(reportTitle);
         stringBuilder.append("\n");
 
-        eventLog.addBundlesEvent(stringBuilder.toString());
+        testService.addBundlesEvent(stringBuilder.toString());
 
     }
 

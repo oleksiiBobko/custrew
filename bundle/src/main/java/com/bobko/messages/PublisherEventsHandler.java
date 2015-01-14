@@ -29,7 +29,7 @@ public class PublisherEventsHandler  implements EventHandler {
     private static final Logger LOG = LoggerFactory.getLogger(PublisherEventsHandler.class);
     
     @Reference
-    private TestService eventLog;
+    private TestService testService;    
     
     @Activate
     private void activate(BundleContext bundleContext) {
@@ -49,7 +49,7 @@ public class PublisherEventsHandler  implements EventHandler {
         stringBuilder.append(reportTitle);
         stringBuilder.append("\n");
         
-        eventLog.addPublisherEvent(stringBuilder.toString());
+        testService.addPublisherEvent(stringBuilder.toString());
         
         LOG.info("message received " + reportTitle + " " + reportPath);
         
