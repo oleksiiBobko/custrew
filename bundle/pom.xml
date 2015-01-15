@@ -45,6 +45,7 @@
 			<configuration>
 				<instructions>
 					<Bundle-SymbolicName>com.bobko.custrew-bundle</Bundle-SymbolicName>
+					<Bundle-Activator>com.bobko.activator.Activator</Bundle-Activator>
 				</instructions>
 			</configuration>
 		</plugin>
@@ -169,8 +170,11 @@
 		<dependency>
 			<groupId>org.apache.felix</groupId>
 			<artifactId>org.apache.felix.scr.annotations</artifactId>
-			<version>1.9.0</version>
 		</dependency>
+        <dependency>
+	       <groupId>org.apache.felix</groupId>
+	       <artifactId>org.apache.felix.dependencymanager</artifactId>
+        </dependency>
 		<dependency>
 			<groupId>org.apache.sling</groupId>
 			<artifactId>org.apache.sling.models.impl</artifactId>
