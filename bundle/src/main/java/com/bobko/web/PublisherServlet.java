@@ -16,7 +16,7 @@ import com.bobko.service.TestService;
 @SlingServlet(description = "asdasdServlet", label = "asdfasdfServlet")
 public class PublisherServlet extends SlingAllMethodsServlet {
     
-    @Reference
+    @Reference(target="(type=my-implementation)")
     private TestService eventLog;
     
     @Override

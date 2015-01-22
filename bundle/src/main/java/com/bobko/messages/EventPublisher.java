@@ -1,5 +1,9 @@
 package com.bobko.messages;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
@@ -25,7 +29,10 @@ public class EventPublisher {
 
     @Reference
     private EventAdmin eventAdmin;
+    
     private boolean running = true;
+    
+    DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
     @Activate
     public void init(BundleContext context) {
@@ -35,10 +42,13 @@ public class EventPublisher {
             @Override
             public void run() {
                 while (running) {
+                    
+                    Calendar cal = Calendar.getInstance();
+                    
                     Dictionary<String, String> properties = new Hashtable<String, String>();
                     properties.put("title", "Current time publisher");
                     properties.put("time",
-                            String.valueOf(System.currentTimeMillis()));
+                            dateFormat.format(cal.getTime()));
                     Event reportGeneratedEvent = new Event(
                             "com/publisher/currenttime/GENERATED", properties);
                     eventAdmin.postEvent(reportGeneratedEvent);
@@ -52,7 +62,7 @@ public class EventPublisher {
                 }
                 LOG.info("Publisher has deactivated");
             }
-        });
+        }, "Event publisher");
 
         publisher.start();
 

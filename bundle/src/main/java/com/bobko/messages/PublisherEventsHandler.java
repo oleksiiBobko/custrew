@@ -1,8 +1,5 @@
 package com.bobko.messages;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.felix.scr.annotations.Activate;
 import org.apache.felix.scr.annotations.Component;
 import org.apache.felix.scr.annotations.Properties;
@@ -28,7 +25,7 @@ public class PublisherEventsHandler  implements EventHandler {
     
     private static final Logger LOG = LoggerFactory.getLogger(PublisherEventsHandler.class);
     
-    @Reference
+    @Reference(target="(type=my-implementation)")
     private TestService testService;    
     
     @Activate

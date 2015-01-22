@@ -16,7 +16,13 @@ import com.bobko.service.TestService;
 @SlingServlet(description = "asdasdServlet1", label = "asdfasdfServlet1")
 public class BundlesServlet  extends SlingAllMethodsServlet {
 
-    @Reference
+//    you can use LDAP syntax for filtering
+//    "(cn=Babs Jensen)"
+//    "(!(cn=Tim Howes))"
+//    "(&(" + Constants.OBJECTCLASS + "=Person)(|(sn=Jensen)(cn=Babs J*)))"
+//    "(o=univ*of*mich*)"
+    
+    @Reference(target="(type=my-implementation)")
     private TestService eventLog;
     
     @Override
